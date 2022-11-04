@@ -39,3 +39,8 @@
 2) portfolio.html will be the file that contains all the work for 'Portfolio Page'
     a) In the lesson todos, ignore TOGO 1 (but copy boilerplate code)
     b) You can stop at TODO 5
+
+## How to save work to github
+1) git add -A
+2) git commit -m "create description of commit"
+3) git push
