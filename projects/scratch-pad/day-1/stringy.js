@@ -154,7 +154,7 @@ return stringOne.concat("", stringTwo);
  */
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-    var args = Array.from(arguments);
+    var args = Array.from(arguments); //pull out all the arguments passed to it and store them in an Array called args (code not mine; here when I opened it)
 
 
     // YOUR CODE ABOVE HERE //
@@ -172,7 +172,15 @@ function join(stringOne, stringTwo) {
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
-
+var count1; //initialize comparison variables
+var count2;
+count1 = stringOne.length; //make comparison variables equal to the lengths of the two strings
+count2 = stringTwo.length;
+if(count1 > count2){ //compare the first count to the second; if it's greater then output the first string, if less output the second string (no instructions on what to do if equal)
+    return stringOne;
+} else if(count1 < count2){
+    return stringTwo;
+}
 
     // YOUR CODE ABOVE HERE //
 }
@@ -186,7 +194,8 @@ function longest(stringOne, stringTwo) {
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+//compare alphabetically and return 1 if first string is ahead of second, -1 if it's behind, and 0 if equal
+return stringOne.localeCompare(stringTwo);
 
 
     // YOUR CODE ABOVE HERE //
@@ -202,7 +211,8 @@ function sortAscending(stringOne, stringTwo) {
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+//compare alphabetically and return 1 if second string is ahead of the first, -1 if it's behind, and 0 if equal
+return stringTwo.localeCompare(stringOne);
 
 
 
