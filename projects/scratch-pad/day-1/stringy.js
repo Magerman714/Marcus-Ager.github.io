@@ -14,7 +14,7 @@
  */
 function length(string) {
     // YOUR CODE BELOW HERE //
-    
+
 //return the length of the inputted string
 return string.length;
 
@@ -27,7 +27,7 @@ return string.length;
 function toLowerCase(string) {
     // YOUR CODE BELOW HERE //
 
-//set all characters in inputted string to lowercase letters and output new string
+//set all characters in inputted string to lowercase letters and return new string
 return string.toLowerCase();
     // YOUR CODE ABOVE HERE //
 }
