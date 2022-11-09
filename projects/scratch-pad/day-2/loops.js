@@ -26,7 +26,9 @@ function printArrayValues(array) {
 function printArrayValuesInReverse(array) {
   // YOUR CODE BELOW HERE //
   
-  
+  //  you need to put this into an array to go through it in reverse
+  // look up these methods: Object.keys() and Object.values()
+
   
   
   // YOUR CODE ABOVE HERE //
