@@ -22,8 +22,18 @@
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
     
-    
-    
+    //create a loop that exports each character in the string into a new array from back to front
+    var rev;
+    var outp;
+    var temp = [];
+for(var i = 0; i <= input.length - 1; i++){
+  temp.unshift(input.charAt(i));
+}
+    //use the join method to concatenate all of these elements into a new string
+    rev = temp.join();
+    outp = rev.replace(/,/g, "");
+    //return that string
+    return outp;
     
     // YOUR CODE GOES ABOVE HERE //
 }
