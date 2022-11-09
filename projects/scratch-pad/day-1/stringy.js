@@ -38,7 +38,7 @@ return string.toLowerCase();
 function toUpperCase(string) {
     // YOUR CODE BELOW HERE //
 //set all characters in inputted string to uppercase letters and output new string
-console.log(string.toUpperCase());
+return string.toUpperCase();
 
 
     // YOUR CODE ABOVE HERE //
@@ -60,7 +60,11 @@ console.log(string.toUpperCase());
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
 //replace all spaces in inputted string with "-" and output
-console.log(string.join("-"));
+var temp;
+var outp;
+temp = string.toLowerCase();
+outp = temp.replace(/ /g,"-");
+return outp;
 
     // YOUR CODE ABOVE HERE //
 }
@@ -83,14 +87,14 @@ function beginsWith(string, char) {
 var first;
 first = string.charAt(0);
 //make that first character and the second inputted character lowercase letters
-sLower = first.toLowerCase();
-cLower = char.toLowerCase();
+let sLower = first.toLowerCase();
+let cLower = char.toLowerCase();
 //compare to the lowercase test character given to the lowercase 2nd input given
 if(sLower === cLower){
-//return "true" if they're equal, "false" if not
-return "true";
+//return true if they're equal, false if not
+return true;
 }else{
-    return "false";
+    return false;
 }
 
     
@@ -117,14 +121,14 @@ function endsWith(string, char) {
 var last;
 last = string.charAt(string.length - 1);
 //make that last character and the second inputted character lowercase letters
-lLower = last.toLowerCase();
-cLower = char.toLowerCase();
+let lLower = last.toLowerCase();
+let cLower = char.toLowerCase();
 //compare to the lowercase test character given to the lowercase 2nd input given
 if(lLower === cLower){
 //return "true" if they're equal, "false" if not
-    return "true";
+    return true;
 }else{
-    return "false";
+    return false;
 }
     // YOUR CODE ABOVE HERE //
 }
@@ -155,7 +159,7 @@ return stringOne.concat("", stringTwo);
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     var args = Array.from(arguments); //pull out all the arguments passed to it and store them in an Array called args (code not mine; here when I opened it)
-
+return args.join("");
 
     // YOUR CODE ABOVE HERE //
 }
@@ -194,8 +198,18 @@ if(count1 > count2){ //compare the first count to the second; if it's greater th
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-//compare alphabetically and return 1 if first string is ahead of second, -1 if it's behind, and 0 if equal
-return stringOne.localeCompare(stringTwo);
+//put strings into an array
+let array = [stringOne, stringTwo];
+//sort array alphabetically
+let sorted = array.sort();
+//use nested if statement to return 1 if stringOne is first, -1 if stringTwo is first, and 0 if the two are equal
+if(stringOne === stringTwo){
+    return 0;
+}else if(sorted[0] === stringOne){
+    return 1;
+}else if(sorted[0] === stringTwo){
+    return -1;
+}
 
 
     // YOUR CODE ABOVE HERE //
@@ -211,11 +225,18 @@ return stringOne.localeCompare(stringTwo);
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-//compare alphabetically and return 1 if second string is ahead of the first, -1 if it's behind, and 0 if equal
-return stringTwo.localeCompare(stringOne);
-
-
-
+//put strings into an array
+let array = [stringOne, stringTwo];
+//sort array alphabetically
+let sorted = array.sort();
+//use nested if statement to return -1 if stringOne is first, 1 if stringTwo is first, and 0 if the two are equal
+if(stringOne === stringTwo){
+    return 0;
+}else if(sorted[0] === stringOne){
+    return -1;
+}else if(sorted[0] === stringTwo){
+    return 1;
+}
     // YOUR CODE ABOVE HERE //
 }
 
