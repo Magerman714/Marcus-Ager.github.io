@@ -15,7 +15,7 @@
 function isArray(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    //note that the "typeof" operator can't differentiate arrays from objects, but there is a method that can
     
     
     // YOUR CODE ABOVE HERE //

@@ -14,7 +14,7 @@
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
+    //note that for anything that returns a function, "return function"
     
     
     // YOUR CODE ABOVE HERE //
@@ -72,7 +72,7 @@ function createEndsWithFilter(endsWith) {
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
     
-    
+    //example: modifyStrings(['a', 'b'], function(string){return string.toUpperCase()}) <== should return ['A', 'B']
     
     
     // YOUR CODE ABOVE HERE //
