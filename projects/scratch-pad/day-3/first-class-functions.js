@@ -14,8 +14,15 @@
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    //note that for anything that returns a function, "return function"
-    
+    //note that for anything that returns a function, "return function" needs to be in there somewhere
+    return function(x){
+        if(base > x){
+            return base;
+        }else{
+            return x;
+        }
+    }
+
     
     // YOUR CODE ABOVE HERE //
 }
