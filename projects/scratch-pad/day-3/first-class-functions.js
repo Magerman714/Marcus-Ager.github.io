@@ -16,10 +16,10 @@ function createGreaterThanFilter(base) {
     
     //note that for anything that returns a function, "return function" needs to be in there somewhere
     return function(x){
-        if(base > x){
-            return base;
+        if(base < x){
+            return true;
         }else{
-            return x;
+            return false;
         }
     }
 
@@ -35,7 +35,13 @@ function createGreaterThanFilter(base) {
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
+    return function(x){
+        if(base > x){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -49,7 +55,16 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    return function(y){
+        var first = y.charAt(0);
+        var test = first.toUpperCase();
+        var test2 = startsWith.toUpperCase();
+        if(test === test2){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -63,7 +78,16 @@ function createStartsWithFilter(startsWith) {
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    return function(y){
+        var last = y.charAt(y.length - 1);
+        var test = last.toUpperCase();
+        var test2 = endsWith.toUpperCase();
+        if(test === test2){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -80,8 +104,11 @@ function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
     
     //example: modifyStrings(['a', 'b'], function(string){return string.toUpperCase()}) <== should return ['A', 'B']
-    
-    
+    var out = [];
+    for(var i = 0; i <= strings.length - 1; i++){
+        out.push(modify(strings[i]))
+    }
+    return out;
     // YOUR CODE ABOVE HERE //
 }
 
