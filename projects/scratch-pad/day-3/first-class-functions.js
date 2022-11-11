@@ -124,7 +124,17 @@ function modifyStrings(strings, modify) {
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
     
-    
+    var call;
+    var outp;
+    for(var i = 0; i <= strings.length - 1; i++){
+        call = test(strings[i]);
+        if(call === true && outp !== false){
+            outp = true;
+        }else{
+            outp = false;
+        }
+    }
+    return outp;
     
     
     // YOUR CODE ABOVE HERE //
