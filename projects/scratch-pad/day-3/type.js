@@ -36,9 +36,25 @@ function isArray(value) {
 function isObject(value) {
     // YOUR CODE BELOW HERE //
     
-    
-    
-    
+    if(typeof value === "object"){
+        if(value === null){
+            return false;
+        }else if(Array.isArray(value)){
+            return false;
+        }else if(value instanceof Date){
+            return false;
+        }else{
+                if(value instanceof Map){
+                    return false;
+                }else{
+                    return true;
+                }
+            
+        }
+    }else{
+        return false;
+    }
+       
     // YOUR CODE ABOVE HERE //
 }
 
@@ -51,7 +67,26 @@ function isObject(value) {
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    if(Array.isArray(value)){
+        return true;
+    }else if (typeof value === "object"){
+        if(value === null){
+            return false;
+        }else if(Array.isArray(value)){
+            return false;
+        }else if(value instanceof Date){
+            return false;
+        }else{
+                if(value instanceof Map){
+                    return false;
+                }else{
+                    return true;
+                }
+            
+        }
+    }else{
+        return false;
+    }
     
     
     // YOUR CODE ABOVE HERE //

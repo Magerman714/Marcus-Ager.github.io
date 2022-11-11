@@ -33,17 +33,21 @@
  *          new-line character added after it!
  */
 
+//note that the "contact list" is just a list of "contact" objects that 
+//contain the keys "id" (a number), nameFirst, and nameLast -- see the contact.json file in "data" for these
+
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
 
 } 
-
+//make sure you pass all the tests for the above function before you move on to the one below - all the tests
+//for the function below are based on the function above, so if the above function doesn't pass the other also won't
 
 function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
