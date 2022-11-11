@@ -16,7 +16,11 @@ function isArray(value) {
     // YOUR CODE BELOW HERE //
     
     //note that the "typeof" operator can't differentiate arrays from objects, but there is a method that can
-    
+    if(Array.isArray(value)){
+        return true;
+    }else{
+        return false;
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -74,10 +78,19 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+        if(typeof value === "object"){
+            if(value === null){
+                return "null";
+            }else if(Array.isArray(value)){
+                return "array";
+            }else if(value instanceof Date){
+                return "date";
+            }else{
+                return "object";
+            }
+        }else{
+            return typeof value;
+        }
     // YOUR CODE ABOVE HERE //
 }
 
