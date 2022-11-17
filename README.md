@@ -9,6 +9,9 @@
 6) in terminal, type => sudo apt-get install subversion
 7) in terminal, type => npm install -g opspark
 8) in terminal, type => os install
+9) input your username from github: Magerman714
+10) input your token: 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 (remember to update this when it changes)
+11) select the program to be installed, then type 'y' and hit enter
 
 # How to run git commands
 1) in terminal, type => git add -A
