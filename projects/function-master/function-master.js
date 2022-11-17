@@ -4,7 +4,7 @@
 
 function objectValues(object) {
     let objArr = [];
-    for (var key in object){
+    for (let key in object){
     objArr.push(object[key]);
     }
     return objArr;
@@ -19,7 +19,7 @@ function objectValues(object) {
 function keysToString(object) {
     let outp = "";
     let arr = Object.keys(object);
-    for(var i = 0; i <= arr.length - 2; i++){
+    for(let i = 0; i <= arr.length - 2; i++){
     outp = outp + arr[i] + " ";
     }
     outp += arr[arr.length - 1];
@@ -31,7 +31,13 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    let outp = "";
+    let arr = objectValues(object);
+    for(let i = 0; i <= arr.length - 2; i++){
+        outp = outp + arr[i] + " ";
+    }
+    outp += arr[arr.length - 1];
+    return outp;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -39,7 +45,12 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    if(Array.isArray(collection) === true){
+        return 'array';
+    }else{
+        return 'object';
+    }
+
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -47,16 +58,23 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
-}
+    return string.charAt(0).toUpperCase() + string.slice(1);
+} 
 
 //////////////////////////////////////////////////////////////////////
 // Function 6 - Capitalize All Words /////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    let arr = string.split(" ");
+    let outp;
+    for(i = 0; i <= arr.length - 1; i++){
+        arr[i] = capitalizeWord(arr[i]);
+    }
+     outp = arr.join(" ");
+     return outp;
 }
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
