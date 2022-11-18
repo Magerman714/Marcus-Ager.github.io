@@ -2,6 +2,8 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+const { isUndefined } = require("lodash");
+
 function objectValues(object) {
     let objArr = [];
     for (let key in object){
@@ -81,7 +83,10 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+    let outp = "Welcome ";
+    let nam = object.name;
+    outp = outp + capitalizeWord(nam) + "!";
+    return outp;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -89,7 +94,10 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    let spec = capitalizeWord(object.species);
+    let nam = capitalizeWord(object.name);
+    let outp = nam + " is a " + spec;
+    return outp;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -97,7 +105,13 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+ 
+    if(Array.isArray(object.noises) && object.noises.length > 0){
+        let noi = object.noises.join(" ");
+        return noi; 
+    }else{
+        return "there are no noises";
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -105,7 +119,8 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    let arr = string.split(" ");
+    return arr.includes(word);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -113,15 +128,21 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    object.friends.push(name);
+    return object;
 }
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 12 - Is Friend ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    if(object.hasOwnProperty("friends")){
+        return object.friends.includes(name);
+    }else{
+        return false;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -129,7 +150,31 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    let outp = [];
+    let index = 0;
+    let test = 0;
+    //find the index in the array for the name that was passed to the function and pass it to "index" variable
+    for(let i = 0; i <= array.length - 1; i++){
+        if(array[i].name === name){
+            index = i;
+        }
+    }
+    //
+    for(let i = 0; i <= array[index].friends.length - 1; i++){
+        if(array[index].name[i] !== name){
+            for(let z = 0; z <= array[index].friends.length - 1; z++){
+                if(array[index].friends[z] !== name){
+                    test = 1; //need different variable for each name?
+                }else{
+                    test = 0;
+                }
+            }
+            if(test = 1){
+                outp.push(array[i].name);
+            }
+        }
+    }
+    return outp;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -137,7 +182,11 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    if(Object.keys(object).includes(key)){
+        
+    }else{
+        object[key] = value;  //I assume the problem here has to do with assigning values to complex data types?
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
