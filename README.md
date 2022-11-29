@@ -10,7 +10,7 @@
 7) in terminal, type => npm install -g opspark
 8) in terminal, type => os install
 9) input your username from github: Magerman714
-10) input your token: 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 (remember to update this when it changes)
+10) input your token
 11) select the program to be installed, then type 'y' and hit enter
 
 # How to run git commands
