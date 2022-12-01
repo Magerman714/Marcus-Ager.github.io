@@ -3,6 +3,8 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
+const { result } = require("lodash");
+
 var _ = {}; //essentially what's happening in the underpants file, is we're creating properties assigned to this "_" variable, and we're assigning functions to this variable
 
 
@@ -88,10 +90,14 @@ _.typeOf = function(value){
 */
 
 _.first = function(array, number){
-    if(!Array.isArray(array)){
+    if(!Array.isArray(array) || number < 0){
         return [];
+    }else if(number === undefined || typeof number !== "number"){
+        return array[0];
+    }else if(number > array.length){
+        return array;
     }else{
-        
+        return array.slice(0,number);
     }
 }
 
@@ -113,8 +119,16 @@ _.first = function(array, number){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.last = function(){
-
+_.last = function(array, num){
+    if(!Array.isArray(array) || num < 0){
+        return [];
+    }else if(num === undefined || typeof num !== "number"){
+        return array[array.length - 1];
+    }else if(num > array.length){
+        return array;
+    }else{
+        return array.slice(array.length - num, array.length);
+    }
 }
 
 /** _.indexOf
@@ -133,6 +147,14 @@ _.last = function(){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(array, value){
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === value){
+            return i;
+        }
+    }
+    return -1;
+}
 
 /** _.contains
 * Arguments:
@@ -149,6 +171,14 @@ _.last = function(){
 *   _.contains([1,"two", 3.14], "two") -> true
 */
 
+_.contains = function(array, value){
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === value){
+            return true;
+        }
+    }
+        return false;
+}
 
 /** _.each
 * Arguments:
@@ -176,7 +206,7 @@ _.each = function(collection, funct){
         }
     }else{ //else it's an object
         for (let key in collection){
-            funct();
+            funct(collection[key], key, collection);
         }
     }
 };
@@ -191,6 +221,15 @@ _.each = function(collection, funct){
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = function(array){
+    let outp = [];
+    for(let i = 0; i < array.length - 1; i++){
+        if(_.indexOf(outp, array[i]) === -1){
+            outp.push(array[_.indexOf(array, array[i])])
+        }
+    }
+    return outp;
+}
 
 /** _.filter
 * Arguments:
@@ -208,6 +247,15 @@ _.each = function(collection, funct){
 *   use _.each in your implementation
 */
 
+_.filter = function(array, funct){
+    let outp = [];
+    for(let i = 0; i <= array.length - 1; i++){
+        if(funct(array[i], i, array) === true){
+            outp.push(array[i]);  
+    }
+    }
+    return outp;
+}
 
 /** _.reject
 * Arguments:
@@ -221,6 +269,16 @@ _.each = function(collection, funct){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function(array, funct){
+    let outp = [];
+    for(let i = 0; i <= array.length - 1; i++){
+        if(funct(array[i], i, array) === false){
+            outp.push(array[i]); 
+        }
+    }
+    return outp;
+}
 
 
 /** _.partition
@@ -242,6 +300,20 @@ _.each = function(collection, funct){
 }
 */
 
+_.partition = function(array, funct){
+    let outp = [];
+    let outp1 = [];
+    let outp2 = [];
+    for(let i = 0; i <= array.length - 1; i++){
+        if(funct(array[i], i, array) === true){
+            outp1.push(array[i]); 
+        }else{
+            outp2.push(array[i]); 
+        } 
+    }
+    outp = [outp1, outp2];
+    return outp;
+}
 
 /** _.map
 * Arguments:
@@ -260,6 +332,21 @@ _.each = function(collection, funct){
 */
 
 
+_.map = function(collection, func){
+    let arr = [];
+    if(Array.isArray(collection)){
+        for(let i = 0; i < collection.length; i++){
+            arr.push(func(collection[i], i, collection));
+            
+        }
+    }else{
+        for(let key in collection){
+        arr.push(func(collection[key], key, collection));
+        }
+    }
+    return arr;
+}
+
 /** _.pluck
 * Arguments:
 *   1) An array of objects
@@ -271,6 +358,13 @@ _.each = function(collection, funct){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function(array, property){
+    let result = [];
+    function doIt(property){
+        return result.push(array[i][property]);
+    }
+    return _.map(array, doIt(property));
+}
 
 /** _.every
 * Arguments:
@@ -293,6 +387,29 @@ _.each = function(collection, funct){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+_.every = function(collection, test){
+    /**
+     * let collection = [1, 2, 3];
+     * let test; //undefined
+     */
+    //determine if collection is array
+    if(Array.isArray(collection)){
+        //determine if test has not received a value
+        if(test === undefined){
+            for(let i = 0; i < collection.length; i++){
+                if(!array[i]){ //determine if array[i] is NOT truthy
+
+                }
+            }
+        }
+        //else it has
+    }else{ //else it's an object
+        // determine if test has not received
+
+        //else it has
+    }
+}
+_.every([1, 2, 3]); // <== should still function like this
 
 /** _.some
 * Arguments:
@@ -317,6 +434,8 @@ _.each = function(collection, funct){
 
 
 /** _.reduce
+ * (NOTE: THIS ONE SHOULD BE COVERED IN CLASS) - note that this is identicle to the filter method you created earlier
+ * 
 * Arguments:
 *   1) An array
 *   2) A function
@@ -335,6 +454,23 @@ _.each = function(collection, funct){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, func, seed){
+    //create reult variable
+    let result;
+    //determine if seed did not receive a value
+    if(seed === undefined){ //note that "!seed" does NOT work in this instance, since other "falsey" values exist, such as '0', which seed could be
+        result = array[0]; //any time you don't pass a seed in to the reduce method, it will create one for you
+        for(let i = 1; i < array.length; i++){
+            result = func(result, array[i], i, array);
+        }
+    }else{ //else it did
+        result = seed;
+        for(let i = 0; i < array.length; i++){
+            result = func(result, array[i], i, array);
+        }
+    }
+    return result;
+}
 
 /** _.extend
 * Arguments:

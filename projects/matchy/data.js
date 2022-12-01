@@ -123,7 +123,7 @@ console.log(animals.length);
 
 //we chose arrays, as this will contain only a list of names and there are more methods that can be used with it
 
-var friends = [];
+var friends = []; //Create a variable called `friends` and assign it to the data structure that you chose.
 //create getRandom function that outputs a random number between 0 and inputted array length - 1
 function getRandom(array){{
     let max = array.length - 1;
@@ -143,12 +143,14 @@ var randnam = randan.name;
 
 friends.push(randnam);
 
+//`console.log` `friends`.
 
-// friends.push(animal[getRandom(animals)].name);
-// console.log(friends);
-// animals[0]["friends"].push(friends);
-// console.log(animals);
+console.log(friends);
 
+//Using **bracket notation**, add the `friends` list as a **property** also named `friends` on one of the animals in the `animals` array
+
+horse["friends"] = friends;
+console.log(duck.friends);
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and
  * move onto Part 2 in the file called "functions.js"
