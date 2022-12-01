@@ -2,7 +2,7 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-const { isUndefined } = require("lodash");
+// const { isUndefined } = require("lodash");
 
 function objectValues(object) {
     let objArr = [];
@@ -36,6 +36,7 @@ function valuesToString(object) {
     let outp = "";
     let arr = objectValues(object);
     for(let i = 0; i <= arr.length - 2; i++){
+        //if value is string datatype, add to outp
         outp = outp + arr[i] + " ";
     }
     outp += arr[arr.length - 1];
@@ -149,6 +150,8 @@ function isFriend(name, object) {
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//the way to do this is to check every "friends" array and adding it to output array if the "name" argument is not in that array.
+
 function nonFriends(name, array) {
     let outp = [];
     let index = 0;
@@ -182,11 +185,7 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-    if(Object.keys(object).includes(key)){
-        
-    }else{
-        object[key] = value;  //I assume the problem here has to do with assigning values to complex data types?
-    }
+    object[key] = value;  //I assume the problem here has to do with assigning values to complex data types?
     return object; //you need to return something lol, that's the problem
 }
 
@@ -194,12 +193,14 @@ function updateObject(object, key, value) {
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//start uncommenting out one function at a time to find syntax error
+
 function removeProperties(object, array) {
-    for(let i = 0; 1 < array.length; i++){
-        if (object.hasOwnProperty(array[i])){
-            delete object[array[i]];
-        }
-    }
+    // for(let i = 0; 1 < array.length; i++){
+    //     if (object.hasOwnProperty(array[i])){
+    //         delete object[array[i]];
+    //     }
+    // }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -209,16 +210,16 @@ function removeProperties(object, array) {
 //"dedup() : Should take an array and return an array with all the duplicates removed"
 
 function dedup(array) {
-    let outp = [""];
-    for(let i = 0; i < array.length; i++){
-        for(let z = 0; z < outp.length; z++){
-            if(array[i] !== outp[z]){
-                outp.push(array[i])
-            }
-        }
-    }
-    outp.shift();
-    return outp;
+    // let outp = [""];
+    // for(let i = 0; i < array.length; i++){
+    //     for(let z = 0; z < outp.length; z++){
+    //         if(array[i] !== outp[z]){
+    //             outp.push(array[i])
+    //         }
+    //     }
+    // }
+    // outp.shift();
+    // return outp;
 }
 
 //////////////////////////////////////////////////////////////////////

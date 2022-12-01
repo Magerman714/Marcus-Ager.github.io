@@ -133,7 +133,7 @@ function getRandom(array){{
 
 //get a random animal
 
-var randan = animal[getRandom(animals)];
+var randan = animals[getRandom(animals)];
 
 //get the name of the random animal
 
@@ -150,7 +150,8 @@ console.log(friends);
 //Using **bracket notation**, add the `friends` list as a **property** also named `friends` on one of the animals in the `animals` array
 
 horse["friends"] = friends;
-console.log(duck.friends);
+console.log(horse.friends);
+
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and
  * move onto Part 2 in the file called "functions.js"
