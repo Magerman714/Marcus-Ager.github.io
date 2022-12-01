@@ -3,9 +3,11 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
+//include a parameter in the function; print that many lines
+
+function triangles(num) {
   let post = "#";
-for(let i = 1; i <= 7; i++){
+for(let i = 1; i <= num; i++){
 console.log(post);
 post += "#";
 }
@@ -15,15 +17,15 @@ post += "#";
 ////////////////////////////////////////////////////////////////////////////////
 
 function fizzBuzz() {
-  for(let i = 1; i <= 100; i++){
+  for(let i = 1; i <= 15; i++){
     if(i % 3 !== 0 && i % 5 !== 0){
       console.log(i);
     }else if (i % 3 === 0 && i % 5 === 0){
-      console.log("FizzBuzz");
+      console.log("fizzbuzz");
     }else if (i % 3 === 0){
-      console.log("Fizz");
+      console.log("fizz");
     }else{
-      console.log("Buzz");
+      console.log("buzz");
     }
   }
 }
@@ -32,10 +34,21 @@ function fizzBuzz() {
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
-  let pos1 = " # # # #\n";
-  let pos2 = "# # # # \n";
-  for(let i = 1; i < 8; i++){
+function drawChessboard(num) {
+  let pos1 = "";
+  let pos2 = "";
+  for(let i = 0; i < num; i++){
+    if(i % 2 !== 0){
+      pos1 += " ";
+      pos2 += "#";
+    }else{
+      pos1 += "#";
+      pos2 += " ";
+    }
+  }
+    pos1 += "\n";
+    pos2 += "\n";
+  for(let i = 0; i < num; i++){
     if(i % 2 !== 0){
       console.log(pos1);
     }else{

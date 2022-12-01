@@ -32,14 +32,20 @@ function keysToString(object) {
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Should take an object and return all its string values in a string each separated with a space
+
 function valuesToString(object) {
-    let outp = "";
-    let arr = objectValues(object);
-    for(let i = 0; i <= arr.length - 2; i++){
-        //if value is string datatype, add to outp
+    let outp = ""; //initialize a variable to hold the string which will be returned by this function
+    let arr = Object.values(object); //create an array containing all of the values of the object argument
+    for(let i = 0; i <= arr.length - 1; i++){
+        //if value is string datatype, add to outp and add a space afterwards
+        if(typeof arr[i] === "string"){
         outp = outp + arr[i] + " ";
+        }
     }
-    outp += arr[arr.length - 1];
+    if(outp[outp.length - 1] === " "){ //if the last character is a space, delete it; there should be no space at the end
+    outp = outp.trimEnd();
+    }
     return outp;
 }
 
@@ -150,33 +156,24 @@ function isFriend(name, object) {
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-//the way to do this is to check every "friends" array and adding it to output array if the "name" argument is not in that array.
+//Should take a name and a list of people, and return a list of all the names that <name> is not friends with
+
+//the way to do this is to check every "friends" array and add it to output array if the "name" argument is not in that array.
 
 function nonFriends(name, array) {
     let outp = [];
-    let index = 0;
-    let test = 0;
-    //find the index in the array for the name that was passed to the function and pass it to "index" variable
-    for(let i = 0; i <= array.length - 1; i++){
-        if(array[i].name === name){
-            index = i;
-        }
-    }
-    //
-    for(let i = 0; i <= array[index].friends.length - 1; i++){
-        if(array[index].name[i] !== name){
-            for(let z = 0; z <= array[index].friends.length - 1; z++){
-                if(array[index].friends[z] !== name){
-                    test = 1; //need different variable for each name?
-                }else{
-                    test = 0;
+    let test = true;
+        for(let i = 0; i < array.length; i++){
+            for(let z = 0; z < array[i].friends.length; z++){
+                if(array[i].friends[z] === name){
+                    test = false;
                 }
             }
-            if(test = 1){
+            if(test !== false && array[i].name !== name){
                 outp.push(array[i].name);
             }
+            test = true;
         }
-    }
     return outp;
 }
 
@@ -193,14 +190,16 @@ function updateObject(object, key, value) {
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Should take an object and an array of strings. Should remove any properties on <object> that are listed in <array>
+
 //start uncommenting out one function at a time to find syntax error
 
 function removeProperties(object, array) {
-    // for(let i = 0; 1 < array.length; i++){
-    //     if (object.hasOwnProperty(array[i])){
-    //         delete object[array[i]];
-    //     }
-    // }
+    for(let i = 0; i < array.length; i++){
+        if(object.hasOwnProperty(array[i])){
+            delete object[array[i]];
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -209,17 +208,21 @@ function removeProperties(object, array) {
 
 //"dedup() : Should take an array and return an array with all the duplicates removed"
 
-function dedup(array) {
-    // let outp = [""];
-    // for(let i = 0; i < array.length; i++){
-    //     for(let z = 0; z < outp.length; z++){
-    //         if(array[i] !== outp[z]){
-    //             outp.push(array[i])
-    //         }
-    //     }
-    // }
-    // outp.shift();
-    // return outp;
+function dedup(array){
+    let outp = [];
+    let test = true;
+    for(let i = 0; i < array.length; i++){
+        for(let z = 0; z < outp.length; z++){
+            if(array[i] === outp[z]){
+                test = false;
+            }
+        }
+        if(test === true){
+            outp.push(array[i]);
+        }
+        test = true;
+    }
+    return outp;
 }
 
 //////////////////////////////////////////////////////////////////////
