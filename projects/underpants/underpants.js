@@ -3,7 +3,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-const { result } = require("lodash");
+// const { result } = require("lodash");
 
 var _ = {}; //essentially what's happening in the underpants file, is we're creating properties assigned to this "_" variable, and we're assigning functions to this variable
 
@@ -360,10 +360,10 @@ _.map = function(collection, func){
 
 _.pluck = function(array, property){
     let result = [];
-    function doIt(property){
-        return result.push(array[i][property]);
+    for(let i = 0; i < array.length; i++){
+        result.push(array[i][property]);
     }
-    return _.map(array, doIt(property));
+    return result;
 }
 
 /** _.every
@@ -397,18 +397,38 @@ _.every = function(collection, test){
         //determine if test has not received a value
         if(test === undefined){
             for(let i = 0; i < collection.length; i++){
-                if(!array[i]){ //determine if array[i] is NOT truthy
-
+                if(!collection[i]){ //determine if array[i] is NOT truthy
+                    return false;
+                }
+            }
+        }else{
+            for(let i = 0; i < collection.length; i++){
+                if(test(collection[i], i, collection) === false){
+                    return false;
                 }
             }
         }
         //else it has
     }else{ //else it's an object
-        // determine if test has not received
-
+        // determine if test has not received a value
+        if(test === undefined){
+            for(let key in collection){
+                if(!collection[key]){ //determine if array[i] is NOT truthy
+                    return false;
+                }
+            }
         //else it has
+    }else{
+    for (let key in collection){
+        if(test(collection[key], key, collection) === false){
+            return false;
+        }
     }
 }
+    }
+return true;
+}
+
 _.every([1, 2, 3]); // <== should still function like this
 
 /** _.some
@@ -431,6 +451,43 @@ _.every([1, 2, 3]); // <== should still function like this
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+
+_.some = function(collection, func){
+    if(Array.isArray(collection)){
+        //determine if test has not received a value
+        if(test === undefined){
+            for(let i = 0; i < collection.length; i++){
+                if(!collection[i]){ //determine if array[i] is NOT truthy
+                    return false;
+                }
+            }
+        }else{
+            for(let i = 0; i < collection.length; i++){
+                if(test(collection[i], i, collection) === true){
+                    return true;
+                }
+            }
+        }
+        //else it has
+    }else{ //else it's an object
+        // determine if test has not received a value
+        if(test === undefined){
+            for(let key in collection){
+                if(!collection[key]){ //determine if array[i] is NOT truthy
+                    return false;
+                }
+            }
+        //else it has
+    }else{
+    for (let key in collection){
+        if(test(collection[key], key, collection) === true){
+            return true;
+        }
+    }
+}
+    }
+return false;
+}
 
 
 /** _.reduce
@@ -486,6 +543,10 @@ _.reduce = function(array, func, seed){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(obj1, obj2){
+
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
