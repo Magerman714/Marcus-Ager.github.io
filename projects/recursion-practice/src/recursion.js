@@ -95,6 +95,7 @@ var range = function(x, y, outp=[]) {
   }
 };
 
+
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64.  Here, 8 is the base and 2 is the exponent.
@@ -102,11 +103,13 @@ var range = function(x, y, outp=[]) {
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp, outp=base) {
   //base
-  if(exp < -1){
-    outp = 1 / outp * base;
-    return exponent(base, exp + 1, outp);
-  }else if(exp === 0){
+  if(exp === -1){
+    outp = 1 / outp;
     return outp;
+  }
+  if(exp < 0){
+    outp *= base;
+    return exponent(base, exp + 1, outp);
   }
   if(exp === 0){
     return 1;
@@ -124,15 +127,47 @@ var exponent = function(base, exp, outp=base) {
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function(n) {
+var powerOfTwo = function(n, exp=0, test=2) {
+  if(exp === 10){
+    return false;
+  }
+  if(n === 1){
+    return true;
+  }
+  if(n === test){
+    return true;
+  }
+  test *= 2;
+  return powerOfTwo(n, exp + 1, test);
 };
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+var reverse = function(string, str=string.split(""), outp="") {
+  if(str.length === 0){
+    return outp;
+  }
+  outp += str[str.length - 1];
+  str.pop();
+  return reverse(string, str, outp);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {
+var palindrome = function(string, str=string.split(""), reverse="") {
+
+if(str.length === 0){
+  string = string.replace(" ", "");
+  reverse = reverse.replace(" ", "");
+  string = string.toLowerCase();
+  reverse = reverse.toLowerCase();
+  if(string === reverse){
+    return true;
+  }else{
+    return false;
+  }
+}
+reverse += str[str.length - 1];
+str.pop();
+return palindrome(string, str, reverse);
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -149,7 +184,12 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y) {
+var multiply = function(x, y, total=0) {
+  if(y === 0){
+    return total;
+  }
+  total += x;
+  return multiply(x, y - 1, total);
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -159,6 +199,11 @@ var multiply = function(x, y) {
 
 
 var divide = function(x, y) {
+  // if(){
+
+  // }
+
+  // return divide();
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
@@ -177,7 +222,14 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
+var compareStr = function(str1, str2, s1=str1.split(""), s2=str2.split("")) {
+  if(str1.length !== str2.length || s1[0] !== s2[0]){
+    return false;
+  }
+  if(s1[0] === s2[0] && s1.length === 1){
+      return true;
+    }
+  return compareStr(str1, str2, s1.slice(1), s2.slice(1));
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter

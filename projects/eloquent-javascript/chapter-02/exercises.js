@@ -34,7 +34,7 @@ function fizzBuzz() {
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard(num) {
+function drawChessboard(num=8) {
   let pos1 = "";
   let pos2 = "";
   for(let i = 0; i < num; i++){
@@ -46,8 +46,8 @@ function drawChessboard(num) {
       pos2 += " ";
     }
   }
-    pos1 += "\n";
-    pos2 += "\n";
+  pos1 = pos1 + "\n";
+  pos2 = pos2 + "\n";
   for(let i = 0; i < num; i++){
     if(i % 2 !== 0){
       console.log(pos1);
