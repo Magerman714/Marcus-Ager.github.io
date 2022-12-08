@@ -18,7 +18,7 @@ var _ = require('underbar');
  *
  *    npm start --prefix ./Marcus-Ager.github.io/projects/let-s-get-functional
  *
- *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
+ *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER above with your actual github folder name that is in your workspace.
  */
 
 //Most useful methods from Underpants: filter, map, reduce, each
@@ -77,7 +77,16 @@ var oldestCustomer = function(array){ //return the name of the oldest custumer i
  *          [...]
  */
 
-var youngestCustomer;
+var youngestCustomer = function(array){
+    let youngest = _.reduce(array, function(accumulator, current){
+        //determine if the accumulator is older than the current customer
+        if(accumulator.age < current.age){
+            return accumulator;
+        }else{
+            return current;
+        }
+    }); 
+};
 
 var averageBalance;
 
