@@ -88,7 +88,9 @@ var youngestCustomer = function(array){
     }); 
 };
 
-var averageBalance;
+var averageBalance = function(array){
+    
+};
 
 var firstLetterCount;
 

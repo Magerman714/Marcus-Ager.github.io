@@ -78,7 +78,7 @@ function arrayToList(array) {
 
 //use recursion to iterate through complex objects!
 
-function listToArray(list, output[]) {
+function listToArray(list, output=[]) {
   if(list.rest === null){
     output.push(list.value);
     return output;
@@ -109,9 +109,35 @@ function nth() {
 
 //NOTE: this one will be covered in class on 12/8
 
-function deepEqual() {
-
+function deepEqual(x, y) {
+  //determine if both x and y are not objects
+  if(typeof x !== 'object' && typeof y !== 'object'){
+    return x === y;
+  }
+  //determine if EITHER x OR y are not an object
+  if(typeof x !== 'object' || typeof y !== 'object'){
+    return false;
+  }
+  //create arrays of each items keys
+  let xKeys = Object.keys(x);
+  let yKeys = Object.keys(y);
+  //determine if lengths of keys are different
+  if(xKeys.length !== yKeys.length){
+    return false;
+  }
+  //iterate through xKeys array
+  for(let i = 0; i < xKeys.length; i++){
+    //determine if invoking this function (deepEqual) on the values of these keys would be true or false
+    if(!yKeys.includes(xKeys[i]) || !deepEqual(x[xKeys[i]], y[xKeys[i]])){
+      return false;
+    }
+  }
+  return true;
 }
+
+// deepEqual({ a: 1 }, { a: 1 }); //true
+// deepEqual({ a: 1 }, { a: 2 }); //false
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////

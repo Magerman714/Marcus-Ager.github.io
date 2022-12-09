@@ -406,12 +406,12 @@ var letterTally = function(str, obj={}) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list, arr[]) {
+var compress = function(list, arr=[]) {
   if(list.length === 0){
     return arr;
   }
-  if(list[0] !== arr[0]){
-    arr.push(list[0]); //unshift will eliminate duplicates, but it will be backwards
+  if(list[0] !== arr[arr.length - 1]){
+    arr.push(list[0]); 
   }
   return compress(list.slice(1), arr);
 };
@@ -428,20 +428,64 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, arr=[]) {
+  if(array.length === 0){
+    return arr;
+  }
+  if(array[0] !== arr[arr.length - 1]){
+    arr.push(array[0]); 
+  }
+  return minimizeZeroes(array.slice(1), arr);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, arr=[]) {
+  if(array.length === 0){
+    return arr;
+  }
+  if(arr.length % 2 === 0){
+    arr.push(Math.abs(array[0]));
+  }else{
+    arr.push(-Math.abs(array[0]));
+  }
+  return alternateSign(array.slice(1), arr);
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, outp="") {
+  if(str.length === 0){
+    return outp;
+  }
+  if(str.charAt(0) === "0"){
+    outp += "zero";
+  }else if(str.charAt(0) == 1){
+    outp += "one";
+  }else if(str.charAt(0) == 2){
+    outp += "two";
+  }else if(str.charAt(0) == 3){
+    outp += "three";
+  }else if(str.charAt(0) == 4){
+    outp += "four";
+  }else if(str.charAt(0) == 5){
+    outp += "five";
+  }else if(str.charAt(0) == 6){
+    outp += "six";
+  }else if(str.charAt(0) == 7){
+    outp += "seven";
+  }else if(str.charAt(0) == 8){
+    outp += "eight";
+  }else if(str.charAt(0) == 9){
+    outp += "nine";
+  }else{
+    outp += str.charAt(0);
+  }
+
+  return numToText(str.substring(1), outp)
 };
 
 // *** EXTRA CREDIT ***
