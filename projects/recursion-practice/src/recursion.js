@@ -5,13 +5,14 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n, product=1) {
-  //base
-  if(n === 1){
+  if(n < 0){
+    return null;
+  }else if(n === 0 || n === 1){
     return product;
-  }
-  //recursion
+  }else{
   product *= n;
   return factorial(n - 1);
+  }
 };
 
 // 2. Compute the sum of an array of integers.
@@ -184,12 +185,24 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
+//NOTE: you need to account for if y is negative
+
 var multiply = function(x, y, total=0) {
-  if(y === 0){
+  if(y === 1){
+    total += x;
     return total;
   }
-  total += x;
-  return multiply(x, y - 1, total);
+  if(y === -1){
+    total += x;
+    return -total;
+  }
+  if(y < 0){
+    total += x;
+    return multiply(x, y + 1, total);
+  }else{
+    total += x;
+    return multiply(x, y - 1, total);
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
