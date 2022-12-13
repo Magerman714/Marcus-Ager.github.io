@@ -452,7 +452,7 @@ _.every([1, 2, 3]); // <== should still function like this
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-_.some = function(collection, func){
+_.some = function(collection, test){
     if(Array.isArray(collection)){
         //determine if test has not received a value
         if(test === undefined){
@@ -461,12 +461,14 @@ _.some = function(collection, func){
                     return false;
                 }
             }
+            return true;
         }else{
             for(let i = 0; i < collection.length; i++){
                 if(test(collection[i], i, collection) === true){
                     return true;
                 }
             }
+            return false;
         }
         //else it has
     }else{ //else it's an object
@@ -478,15 +480,16 @@ _.some = function(collection, func){
                 }
             }
         //else it has
-    }else{
-    for (let key in collection){
-        if(test(collection[key], key, collection) === true){
-            return true;
+        return true;
+        }else{
+            for (let key in collection){
+                if(test(collection[key], key, collection) === true){
+                 return true;
+                }
+            }
+            return false;
         }
     }
-}
-    }
-return false;
 }
 
 
@@ -544,8 +547,14 @@ _.reduce = function(array, func, seed){
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function(obj1, obj2){
-
+_.extend = function(...obj1){
+    let args = Array.prototype.slice.call(arguments, 0);
+    for(let i = 1; i < args.length; i++){
+        for(let key in args[i]){
+            args[0][key] = args[i][key];
+        }
+    }
+    return args[0];
 }
 
 //////////////////////////////////////////////////////////////////////

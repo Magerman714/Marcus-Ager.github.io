@@ -2,32 +2,66 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
+function range(start, end, step=1, outp=[]) {
+  if(start === end || step < 1){
+    return outp;
+  }
+  if(start < end){
+    outp.push(start);
+    if(start === end - step || start > end - step){
+      outp.push(end);
+      return outp;
+    }
+    return range(start + step, end, step, outp);
 
+  }else if(start > end){
+      outp.push(start);
+      if(start === end + 1 || start < end + step){
+        outp.push(end);
+        return outp;
+      }
+      return range(start - step, end, step, outp);
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
-
+function sum(numsArr, outp=0) {
+  if(numsArr.length === 0){
+    return outp;
+  }
+  outp += numsArr[0];
+  return sum(numsArr.slice(1), outp)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray(arr) {
+  let outp = [];
+  for(let i = arr.length - 1; i >= 0; i--){
+    outp.push(arr[i]);
+  }
+  return outp;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
-
+function reverseArrayInPlace(arr) {
+  let temp = [];
+  for(let i = arr.length - 1; i >= 0; i--){
+    temp.push(arr[i]);
+    arr.pop();
+  }
+  for(let i = temp.length - 1; i >=0; i--){
+    arr.unshift(temp[i]);
+  }
+  return arr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +96,7 @@ function reverseArrayInPlace() {
 }
 
 
-function arrayToList(array) {
+function arrayToList(array, rest={}) {
   for(let i = array.length - 1; i >= 0; i--){
     rest = { value: array[i], rest: rest };
   }
@@ -70,7 +104,7 @@ function arrayToList(array) {
                 //the second time, it'l look like this: rest = { value: 20, rest: { value: 30, rest: null } }
 }
 
-//NOTE: make SURE that arrayToList is working before you attempt listToArray!
+//NOTE: make SURE that arrayToList is working before you attempt listToArray! -- uhhh ok so arrayToList isn't working but listToArray is?
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
