@@ -77,7 +77,7 @@ function capitalizeWord(string) {
 function capitalizeAllWords(string) {
     let arr = string.split(" ");
     let outp;
-    for(i = 0; i <= arr.length - 1; i++){
+    for(let i = 0; i <= arr.length - 1; i++){
         arr[i] = capitalizeWord(arr[i]);
     }
      outp = arr.join(" ");

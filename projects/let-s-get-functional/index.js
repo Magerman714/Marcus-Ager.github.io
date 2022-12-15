@@ -56,14 +56,17 @@ var femaleCount = function(array){ // constraint: need to use the reduce method 
  */         
 
 var oldestCustomer = function(array){ //return the name of the oldest custumer in the customers array
+    let outp = '';
     let oldest = _.reduce(array, function(accumulator, current){
         //determine if the accumulator is older than the current customer
         if(accumulator.age > current.age){
             return accumulator;
         }else{
+            outp = current.name;
             return current;
         }
     });  //note that since no seed was given, it will automatically be set to the first element in the array
+    return outp;
 }; 
 
 /**
@@ -78,36 +81,75 @@ var oldestCustomer = function(array){ //return the name of the oldest custumer i
  */
 
 var youngestCustomer = function(array){
+    let outp = '';
     let youngest = _.reduce(array, function(accumulator, current){
         //determine if the accumulator is older than the current customer
         if(accumulator.age < current.age){
             return accumulator;
         }else{
+            outp = current.name;
             return current;
         }
-    }); 
+    });  //note that since no seed was given, it will automatically be set to the first element in the array
+    return outp;
 };
 
 var averageBalance = function(array){
-    let outp;
-    let balanceNums = _.map(array, function(){
-        return array.balance.replace(/[$,]/g, "");
-    });
-    let total = _.reduce(function(accumulator, current, i, balanceNums){
-        return current + accumulator;
-    }, 0);
-    return total / array.length;
+    let balanceNums = _.map(array, function(element){
+          return parseFloat(element.balance.replace(/[$,]/g, ""));
+      });
+      let total = _.reduce(balanceNums, function(accumulator, current){
+          return current + accumulator;
+      }, 0);
+    return parseFloat(total / array.length);
 };
 
-var firstLetterCount;
+var firstLetterCount = function(array, letter){
+    let numNames = _.filter(array, function(x){
+        if(x.name.charAt(0).toUpperCase() === letter.toUpperCase()){
+            return true;
+        }else{
+            return false;
+        }
+    });
+    return numNames.length;
+};
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = function(array, customer, letter){
+    let outp = [];
+    let numNames = _.each(array, function(element){
+        if(element.name === customer){
+            outp = _.filter(element.friends, function(x){
+                if(x.name.charAt(0).toUpperCase() === letter.toUpperCase()){
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+        }
+    });
+    return outp.length;
+};
 
-var friendsCount;
+var friendsCount = function(array, name){
+    let outp = _.filter(array, function(x){
+        //if name is in friends list, return array.name
+        return _.reduce(x.friends, function(){
+            if(x.friends === name){
+                return true;
+            }
+        }, false);
+    });
+    return outp;
+};
 
-var topThreeTags;
+var topThreeTags = function(){
 
-var genderCount;
+};
+
+var genderCount = function(){
+
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

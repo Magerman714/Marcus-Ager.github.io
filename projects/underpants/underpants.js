@@ -494,7 +494,6 @@ _.some = function(collection, test){
 
 
 /** _.reduce
- * (NOTE: THIS ONE SHOULD BE COVERED IN CLASS) - note that this is identicle to the filter method you created earlier
  * 
 * Arguments:
 *   1) An array
