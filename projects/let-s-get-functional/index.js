@@ -132,10 +132,12 @@ var friendFirstLetterCount = function(array, customer, letter){
 };
 
 var friendsCount = function(array, name){
-    let outp = _.filter(array, function(x){
+    let outp = [];
+    let posTest = _.filter(array, function(x){
         //if name is in friends list, return array.name
-        return _.reduce(x.friends, function(){
-            if(x.friends === name){
+        return _.reduce(x.friends, function(accumulator, current, i){
+          if(x.friends[i].name === name){
+            outp.push(x.name);
                 return true;
             }
         }, false);
