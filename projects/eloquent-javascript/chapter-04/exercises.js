@@ -96,13 +96,19 @@ function reverseArrayInPlace(arr) {
 }
 
 
-function arrayToList(array, rest={}) {
+function arrayToList(array, rest={}){
   for(let i = array.length - 1; i >= 0; i--){
+  if(i === array.length - 1){
+    rest = { value: array[i], rest: null };
+  }else{
     rest = { value: array[i], rest: rest };
   }
-  return rest;  //the first time we iterate, we will be assigning "rest" to an object that looks like: {value: 30, rest: null }
-                //the second time, it'l look like this: rest = { value: 20, rest: { value: 30, rest: null } }
-}
+  }
+  return rest; 
+}  
+//the first time we iterate, we will be assigning "rest" to an object that looks like: {value: 30, rest: null }
+//the second time, it'l look like this: rest = { value: 20, rest: { value: 30, rest: null } }
+
 
 //NOTE: make SURE that arrayToList is working before you attempt listToArray! -- uhhh ok so arrayToList isn't working but listToArray is?
 
@@ -125,16 +131,27 @@ function listToArray(list, output=[]) {
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
 
+//should add the passed element to the front of the passed list
+function prepend(element, list) {
+  let listArr = listToArray(list);
+  listArr.unshift(element);
+  return arrayToList(listArr);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+//should return the nth element of the passed list, where "n" is the number passed to the function
+function nth(list, number) {
+  if(number < 0){
+    return undefined;
+  }
+  if(number === 0){
+    return list.value;
+  }
+  return nth(list.rest, number - 1);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
