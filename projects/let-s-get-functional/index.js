@@ -146,56 +146,30 @@ var friendsCount = function(array, name){
 };
 
 var topThreeTags = function(array){
-    let outp = ["", "", ""];
-    let outpVals = [0, 0, 0];
-      let holder = {};
-      _.each(array, function(x){
-          _.each(x.tags, function(x){
-              if(holder[x] === undefined){
-                  holder[x] = 0;
-              }
-              holder[x]++;
-          });
-      });
-    let holdKeys = Object.keys(holder);
-    let holdVals = Object.values(holder);
-    _.each(holder, function(x, i){
-      if(x > outpVals[0] || x > outpVals[1] || x > outpVals[2]){
-        if(outpVals[0] === 0){
-          outpVals[0] = x;
-          outp[0] = i;
-        }else if(outpVals[1] === 0){
-          outpVals[1] = x;
-          outp[1] = i;
-        }else if(outpVals[2] === 0){
-          outpVals[2] = x;
-          outp[2] = i;
-        }else{
-          if(x >= outpVals[2]){
-            if(x >= outpVals[1]){
-              if(x >= outpVals[0]){
-                outpVals[2] = outpVals[1];
-                outp[2] = outp[1];
-                outpVals[1] = outpVals[0];
-                outp[1] = outp[0];
-                outpVals[0] = x;
-                outp[0] = i;
-              }else{
-                outpVals[2] = outpVals[1];
-                outp[2] = outp[1];
-                outpVals[1] = x;
-                outp[1] = i;
-              }
-            }else{
-              outpVals[2] = x;
-              outp[2] = i;
+  let outp = [];
+  let outpPairs = [];
+    let holder = {};
+    _.each(array, function(x){
+        _.each(x.tags, function(x){
+            if(holder[x] === undefined){
+                holder[x] = 0;
             }
-          }
-        }
-      }
+            holder[x]++;
+        });
     });
-      return outp;
-  };
+  let holdKeys = Object.keys(holder);
+  let holdVals = Object.values(holder);
+for(let i = 0; i < holdKeys.length; i++){
+  outpPairs.push([holdKeys[i], holdVals[i]])
+}
+ outpPairs.sort(function(a, b){
+   return b[1] - a[1];
+ });
+  for(let i = 0; i < 3; i++){
+    outp.push(outpPairs[i][0]);
+  }
+    return outp;
+};
 
 var genderCount = function(array){
     let outp = {};

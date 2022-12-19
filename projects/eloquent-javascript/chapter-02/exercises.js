@@ -46,15 +46,23 @@ function drawChessboard(num=8) {
       pos2 += " ";
     }
   }
+  let pos1Last = pos1;
+  let pos2Last = pos2;
   pos1 = pos1 + "\n";
   pos2 = pos2 + "\n";
+  let outp = "";
   for(let i = 0; i < num; i++){
-    if(i % 2 !== 0){
-      console.log(pos1);
-    }else{
-      console.log(pos2);
-    }
+   if(i === num - 1 && i % 2 !== 0){
+        outp += pos1Last;
+   }else if(i === num - 1 && i % 2 === 0){
+        outp += pos2Last;
+   }else if(i % 2 !== 0){
+    outp += pos1;
+   }else{
+    outp += pos2;
+   }
 }
+  console.log(outp + "\n");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
