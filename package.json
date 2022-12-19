@@ -1,0 +1,29 @@
+{
+  "name": "lodown-marcus-ager",
+  "version": "1.0.0",
+  "description": "lodown-project",
+  "main": "^C",
+  "scripts": {
+    "test": "istanbul cover _mocha -- test/ -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Magerman714/Marcus-Ager.github.io.git"
+  },
+  "keywords": [
+    "project"
+  ],
+  "author": "Marcus Ager",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Magerman714/Marcus-Ager.github.io/issues"
+  },
+  "homepage": "https://github.com/Magerman714/Marcus-Ager.github.io#readme",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "i": "^0.3.7",
+    "istanbul": "^0.4.5",
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.1"
+  }
+}
