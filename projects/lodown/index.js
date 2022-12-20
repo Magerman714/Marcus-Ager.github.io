@@ -135,9 +135,9 @@ function each(collection, action) {
 module.exports.each = each;
 
 /**
- * unique: removes duplicates from array
+ * unique: returns a new array containing all the values of the array passed to the function, but without any duplicates
  * @param {array}:  an array of values
- * @returns {array}: the array passed to the function with all its duplicates removed
+ * @returns {array}: a new array containing all values of the initial array, but without any duplicates; each element will have a unique value
  */
 
 function unique(array){
@@ -152,7 +152,7 @@ function unique(array){
 module.exports.unique = unique;
 
 /**
- * filter: returns array containing only the values that passed the test function
+ * filter: returns an array containing only the values that passed the test function
  * @param {array}: an array of values
  * @param {function}: a function that will return a Boolean value
  * @returns {array}: an array containing only the values for which the passed function returned true
